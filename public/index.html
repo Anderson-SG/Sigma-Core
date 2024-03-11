@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"
+        integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4"
+        crossorigin="anonymous"></script>
+
+    <title>Sigma Core</title>
+</head>
+
+<body>
+    <button id="btn">Join Socket</button>
+
+
+    <script type="text/javascript">
+        let socket;
+        const btn = document.getElementById('btn');
+
+        btn.addEventListener('click', () => {
+            if (!socket) {
+                socket = new io('http://localhost:3000');
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

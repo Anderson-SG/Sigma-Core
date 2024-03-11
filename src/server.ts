@@ -1,13 +1,30 @@
-import express, { Request, Response } from 'express';
+import { Server } from 'socket.io';
+import { createServer } from 'node:http';
+import express from 'express';
+import path from 'node:path';
+
+import { serverConfig } from './config/server.config';
 
 const app = express();
-const port = process.env.PORT || 3000;
+const server = createServer(app);
+const io = new Server(server, {
+    cors: {
+        origin: '*',
+    }
+})
 
+app.use(express.static(path.resolve(__dirname, '..', 'public')));
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello, TypeScript Express!');
+io.on('connection', (socket) => {
+    console.log('a user connected');
+    socket.emit('message', 'Hello from server');
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
 });
 
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+
+server.listen(serverConfig.port, () => {
+    console.log(`Server running at http://localhost:${serverConfig.port}`);
 });
+
