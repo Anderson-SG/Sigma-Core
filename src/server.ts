@@ -1,7 +1,6 @@
 import { Server } from 'socket.io';
 import { createServer } from 'node:http';
 import express from 'express';
-import path from 'node:path';
 
 import { serverConfig } from './config/server.config';
 
@@ -12,8 +11,6 @@ const io = new Server(server, {
         origin: '*',
     }
 })
-
-// app.use(express.static(path.resolve(__dirname, '..', 'build-frontend')));
 
 io.on('connection', (socket) => {
     console.log('a user connected');
