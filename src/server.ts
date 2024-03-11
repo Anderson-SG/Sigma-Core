@@ -13,7 +13,7 @@ const io = new Server(server, {
     }
 })
 
-app.use(express.static(path.resolve(__dirname, '..', 'build-frontend')));
+// app.use(express.static(path.resolve(__dirname, '..', 'build-frontend')));
 
 io.on('connection', (socket) => {
     console.log('a user connected');
